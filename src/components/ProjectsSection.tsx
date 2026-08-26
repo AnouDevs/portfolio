@@ -18,6 +18,8 @@ export default function ProjectsSection() {
                 src="/kpop-goodies-preview.png"
                 alt={project.title}
                 fill
+                priority
+                sizes="262px"
                 className="object-cover"
               />
             </div>

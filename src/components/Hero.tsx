@@ -16,8 +16,8 @@ export default function Hero() {
         src="/anou-dev-photo.jpg"
         alt="AnouDev"
         width={340}
-        height={340}
-        className="mt-10 h-[360px] w-[340px] rounded-full object-cover overflow-hidden"
+        height={360}
+        className="mt-10 h-[360px] w-[340px] rounded-full object-cover"
         priority
       />
 
