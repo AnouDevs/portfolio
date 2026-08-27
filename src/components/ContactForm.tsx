@@ -11,7 +11,7 @@ export default function ContactForm() {
   const [error, setError] = useState("");
   const [honeypot, setHoneypot] = useState("");
 
-  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (honeypot !== "") {
@@ -36,7 +36,25 @@ export default function ContactForm() {
     }
 
     setError("");
-    setSent(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Something went wrong. Please try again later.");
+        return;
+      }
+
+      setSent(true);
+    } catch {
+      setError("Something went wrong. Please try again later.");
+    }
   }
 
   return (
