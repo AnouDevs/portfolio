@@ -11,7 +11,7 @@ export default function ContactForm() {
   const [error, setError] = useState("");
   const [honeypot, setHoneypot] = useState("");
 
-  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (honeypot !== "") {
@@ -36,13 +36,31 @@ export default function ContactForm() {
     }
 
     setError("");
-    setSent(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Something went wrong. Please try again later.");
+        return;
+      }
+
+      setSent(true);
+    } catch {
+      setError("Something went wrong. Please try again later.");
+    }
   }
 
   return (
     <section id="contact" className="bg-white px-6 py-20 text-center">
       <h2 className="text-4xl font-bold text-ink">Leave a Message!</h2>
-      <div className="mx-auto mt-2 h-[3px] w-16 bg-sage-underline" />
+      <div className="mx-auto mt-2 h-0.75 w-16 bg-sage-underline" />
 
       {sent ? (
         <div className="mx-auto mt-9 max-w-lg rounded-xl border-[1.5px] border-dashed border-sage-underline bg-success-bg p-9">
