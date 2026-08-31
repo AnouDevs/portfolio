@@ -38,16 +38,32 @@ export default function Header() {
 
       {menuOpen && (
         <nav className="mt-4 flex flex-col gap-4 text-[21px] md:hidden">
-          <a href="#about" onClick={() => setMenuOpen(false)} className="text-ink">
+          <a
+            href="#about"
+            onClick={() => setMenuOpen(false)}
+            className="text-ink"
+          >
             About
           </a>
-          <a href="#projects" onClick={() => setMenuOpen(false)} className="text-ink">
+          <a
+            href="#projects"
+            onClick={() => setMenuOpen(false)}
+            className="text-ink"
+          >
             Projects
           </a>
-          <a href="#skills" onClick={() => setMenuOpen(false)} className="text-ink">
+          <a
+            href="#skills"
+            onClick={() => setMenuOpen(false)}
+            className="text-ink"
+          >
             Skills
           </a>
-          <a href="#contact" onClick={() => setMenuOpen(false)} className="text-accent">
+          <a
+            href="#contact"
+            onClick={() => setMenuOpen(false)}
+            className="text-accent"
+          >
             Leave a Message!
           </a>
         </nav>
