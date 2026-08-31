@@ -5,10 +5,10 @@ export default function Hero() {
   return (
     <section
       id="about"
-      className="flex flex-col items-center px-14 pt-20 pb-24 text-center"
+      className="flex flex-col items-center px-6 pt-16 pb-16 text-center md:px-14 md:pt-20 md:pb-24"
     >
-      <h1 className="text-[54px] font-bold text-ink">
-        Hey World, I&apos;m AnouDev!
+      <h1 className="text-[32px] font-bold text-ink md:text-[54px]">
+        {"Hey World, I'm AnouDev!"}
       </h1>
       <div className="mt-3 h-[3px] w-20 bg-sage-underline" />
 
@@ -34,7 +34,7 @@ export default function Hero() {
         Fullstack Developer · Next.js · TypeScript
       </p>
 
-      <div className="mt-8 flex gap-4">
+      <div className="mt-8 flex flex-col gap-4 sm:flex-row">
         <a
           href="#projects"
           className="rounded-full bg-accent px-6 py-3 text-white hover:bg-accent-hover"
