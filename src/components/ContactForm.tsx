@@ -88,20 +88,20 @@ export default function ContactForm() {
             aria-hidden="true"
           />
 
-          <div className="flex gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row">
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your name"
-              className="w-1/2 rounded-lg border-[1.5px] border-border bg-[#fafafa] p-3 outline-none focus:border-accent"
+              className="w-full rounded-lg border-[1.5px] border-border bg-[#fafafa] p-3 outline-none focus:border-accent sm:w-1/2"
             />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@email.com"
-              className="w-1/2 rounded-lg border-[1.5px] border-border bg-[#fafafa] p-3 outline-none focus:border-accent"
+              className="w-full rounded-lg border-[1.5px] border-border bg-[#fafafa] p-3 outline-none focus:border-accent sm:w-1/2"
             />
           </div>
 

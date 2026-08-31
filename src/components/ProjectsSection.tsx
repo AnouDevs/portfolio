@@ -1,13 +1,23 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import projects from "@/data/projects";
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="bg-white px-14 py-20">
+    <motion.section
+      id="projects"
+      className="bg-white px-6 py-16 md:px-14 md:py-20"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6 }}
+    >
       <h2 className="text-center text-4xl font-bold text-ink">Projects</h2>
       <div className="mx-auto mt-2 h-[3px] w-16 bg-sage-underline" />
 
-      <div className="mt-10 flex gap-6 overflow-x-auto pb-4">
+      <div className="mt-10 flex justify-center gap-6 overflow-x-auto pb-4">
         {projects.map((project) => (
           <div
             key={project.title}
@@ -54,6 +64,6 @@ export default function ProjectsSection() {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
