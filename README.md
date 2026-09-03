@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AnouDev — Portfolio
 
-## Getting Started
+Portfolio personnel présentant mes projets, mes compétences techniques, et un moyen de
+me contacter — construit pour m'accompagner dans ma recherche de poste ou de mission
+freelance en développement web.
 
-First, run the development server:
+🔗 [anoudevs-portfolio.vercel.app](https://anoudevs-portfolio.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
+## Stack technique
+
+- Next.js
+- TypeScript
+- React
+- Tailwind CSS
+- Drizzle ORM
+- PostgreSQL
+- Git/GitHub
+- Framer Motion
+
+## Lancer le projet en local
+
+1. Cloner le repo :
+\`\`\`bash
+git clone https://github.com/AnouDevs/portfolio.git
+\`\`\`
+
+2. Installer les dépendances :
+\`\`\`bash
+pnpm install
+\`\`\`
+
+3. Copier `.env.example` en `.env.local` et remplir vos propres valeurs (base de données Postgres, clé API Resend).
+
+4. Lancer le serveur de développement :
+\`\`\`bash
 pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Ouvrir [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Déploiement
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Le projet est déployé sur [Vercel](https://vercel.com), connecté directement au repo GitHub.
+Chaque push sur une branche génère une preview automatique ; chaque merge sur `main` déploie en production.
 
-## Learn More
+Variables d'environnement à configurer sur Vercel (Production, Preview, Development) :
+- `POSTGRES_URL`
+- `RESEND_API_KEY`
 
-To learn more about Next.js, take a look at the following resources:
+## Décisions techniques
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Drizzle ORM** plutôt que Prisma : syntaxe proche du SQL natif, plus simple à raisonner
+  et à déboguer, sans couche d'abstraction supplémentaire.
+- **Pas d'authentification** : le portfolio est un site vitrine one-page, sans zone privée
+  ni contenu réservé — aucune notion de compte utilisateur n'est nécessaire ici.
+- **Pas d'espace admin** : le contenu (projets, compétences) est codé en dur dans le projet
+  et mis à jour via `git push`, pour garder le site simple à maintenir.
