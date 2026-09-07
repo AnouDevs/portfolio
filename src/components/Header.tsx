@@ -1,9 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language];
 
   return (
     <header className="sticky top-0 z-50 bg-sage px-6 py-[22px] shadow-[0_1px_0_rgba(0,0,0,0.04)] md:px-14">
@@ -14,16 +18,16 @@ export default function Header() {
 
         <nav className="hidden gap-10 text-[21px] md:flex">
           <a href="#about" className="text-ink hover:text-accent">
-            About
+            {t.navAbout}
           </a>
           <a href="#projects" className="text-ink hover:text-accent">
-            Projects
+            {t.navProjects}
           </a>
           <a href="#skills" className="text-ink hover:text-accent">
-            Skills
+            {t.navSkills}
           </a>
           <a href="#contact" className="text-accent hover:text-ink">
-            Leave a Message!
+            {t.navContact}
           </a>
         </nav>
 
@@ -38,33 +42,33 @@ export default function Header() {
 
       {menuOpen && (
         <nav className="mt-4 flex flex-col gap-4 text-[21px] md:hidden">
-          <a
-            href="#about"
+          
+            <a href="#about"
             onClick={() => setMenuOpen(false)}
             className="text-ink"
           >
-            About
+            {t.navAbout}
           </a>
-          <a
-            href="#projects"
+          
+            <a href="#projects"
             onClick={() => setMenuOpen(false)}
             className="text-ink"
           >
-            Projects
+            {t.navProjects}
           </a>
-          <a
-            href="#skills"
+          
+            <a href="#skills"
             onClick={() => setMenuOpen(false)}
             className="text-ink"
           >
-            Skills
+            {t.navSkills}
           </a>
-          <a
-            href="#contact"
+          
+            <a href="#contact"
             onClick={() => setMenuOpen(false)}
             className="text-accent"
           >
-            Leave a Message!
+            {t.navContact}
           </a>
         </nav>
       )}
