@@ -1,8 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 export default function ContactForm() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -26,12 +31,12 @@ export default function ContactForm() {
       subject.trim() === "" ||
       message.trim() === ""
     ) {
-      setError("Please fill in your name, email, and a message.");
+      setError(t.contactErrorFields);
       return;
     }
 
     if (!emailRegex.test(email)) {
-      setError("That email doesn't look quite right.");
+      setError(t.contactErrorEmail);
       return;
     }
 
@@ -47,29 +52,29 @@ export default function ContactForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Something went wrong. Please try again later.");
+        setError(data.error || t.contactErrorServer);
         return;
       }
 
       setSent(true);
     } catch {
-      setError("Something went wrong. Please try again later.");
+      setError(t.contactErrorServer);
     }
   }
 
   return (
     <section id="contact" className="bg-white px-6 py-20 text-center">
-      <h2 className="text-4xl font-bold text-ink">Leave a Message!</h2>
+      <h2 className="text-4xl font-bold text-ink">{t.contactTitle}</h2>
       <div className="mx-auto mt-2 h-0.75 w-16 bg-sage-underline" />
 
       {sent ? (
         <div className="mx-auto mt-9 max-w-lg rounded-xl border-[1.5px] border-dashed border-sage-underline bg-success-bg p-9">
-          <p className="text-xl text-ink">🌿 Thanks for reaching out! 🌿</p>
+          <p className="text-xl text-ink">{t.contactSuccess}</p>
           <button
             onClick={() => setSent(false)}
             className="mt-5 rounded-lg border-[1.5px] border-accent px-6 py-2 text-accent hover:bg-accent hover:text-white"
           >
-            Send another
+            {t.contactSendAnother}
           </button>
         </div>
       ) : (
@@ -93,14 +98,14 @@ export default function ContactForm() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Your name"
+              placeholder={t.contactNamePlaceholder}
               className="w-full rounded-lg border-[1.5px] border-border bg-[#fafafa] p-3 outline-none focus:border-accent sm:w-1/2"
             />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@email.com"
+              placeholder={t.contactEmailPlaceholder}
               className="w-full rounded-lg border-[1.5px] border-border bg-[#fafafa] p-3 outline-none focus:border-accent sm:w-1/2"
             />
           </div>
@@ -109,7 +114,7 @@ export default function ContactForm() {
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            placeholder="What's this about?"
+            placeholder={t.contactSubjectPlaceholder}
             className="rounded-lg border-[1.5px] border-border bg-[#fafafa] p-3 outline-none focus:border-accent"
           />
 
@@ -117,7 +122,7 @@ export default function ContactForm() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={5}
-            placeholder="Write your message here..."
+            placeholder={t.contactMessagePlaceholder}
             className="resize-y rounded-lg border-[1.5px] border-border bg-[#fafafa] p-3 outline-none focus:border-accent"
           />
 
@@ -127,7 +132,7 @@ export default function ContactForm() {
             type="submit"
             className="self-start rounded-lg bg-accent px-8 py-3 text-white hover:bg-accent-hover"
           >
-            Send Message
+            {t.contactSubmit}
           </button>
         </form>
       )}

@@ -1,9 +1,16 @@
+"use client";
+
 import skills from "@/data/skills";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 export default function SkillsSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <section id="skills" className="px-14 py-20 text-center">
-      <h2 className="text-4xl font-bold text-ink">Skills</h2>
+      <h2 className="text-4xl font-bold text-ink">{t.skillsTitle}</h2>
       <div className="mx-auto mt-2 h-[3px] w-16 bg-sage-underline" />
 
       <div className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
