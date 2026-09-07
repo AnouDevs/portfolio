@@ -3,8 +3,13 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import projects from "@/data/projects";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/data/translations";
 
 export default function ProjectsSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <motion.section
       id="projects"
@@ -14,7 +19,9 @@ export default function ProjectsSection() {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
     >
-      <h2 className="text-center text-4xl font-bold text-ink">Projects</h2>
+      <h2 className="text-center text-4xl font-bold text-ink">
+        {t.projectsTitle}
+      </h2>
       <div className="mx-auto mt-2 h-[3px] w-16 bg-sage-underline" />
 
       <div className="mt-10 flex justify-center gap-6 overflow-x-auto pb-4">
@@ -40,7 +47,9 @@ export default function ProjectsSection() {
             <p className="mt-10 text-center text-sm text-script">
               {project.tech.join(", ")}
             </p>
-            <p className="mt-5 text-sm text-[#722f37]">{project.description}</p>
+            <p className="mt-5 text-sm text-[#722f37]">
+              {t.kpopGoodiesDescription}
+            </p>
 
             <div className="mt-4 flex items-center justify-between">
               <a
@@ -49,7 +58,7 @@ export default function ProjectsSection() {
                 rel="noopener noreferrer"
                 className="rounded-full bg-accent px-4 py-2 text-sm text-white hover:bg-accent-hover"
               >
-                Live demo
+                {t.projectsLiveDemo}
               </a>
 
               <a
@@ -58,7 +67,7 @@ export default function ProjectsSection() {
                 rel="noopener noreferrer"
                 className="rounded-full border border-accent px-4 py-2 text-sm text-accent hover:bg-accent hover:text-white"
               >
-                Code
+                {t.projectsCode}
               </a>
             </div>
           </div>
